@@ -58,6 +58,22 @@ void addNodeAtEnd(Node** head, int d) {
     }
 }
 
+//inserting the node at a given position
+void addNodeAfter(Node* previousNode, int d) {
+    //check if the node is null or not
+    if(previousNode == NULL) {
+        cout << "The Previous cannot be NULL" << "\n";
+        return;
+    }
+    //if the previous node is not null then
+    //create the new temp Node.
+    Node* newNode = new Node();
+    newNode->data = d;
+    //pointing next of newNode towards where next of previousNode is pointing
+    newNode->next = previousNode->next;
+    //point the next of previousNode towards newNode
+    previousNode->next = newNode; 
+}
 
 int main() {
 
@@ -71,6 +87,8 @@ int main() {
     addNodeAtStart(&head, 3);
     printList(head);
     addNodeAtEnd(&head, 4);
+    printList(head);
+    addNodeAfter(head->next, 8);
     printList(head);
     return 0;
 }
