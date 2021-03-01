@@ -75,6 +75,34 @@ void addNodeAfter(Node* previousNode, int d) {
     previousNode->next = newNode; 
 }
 
+//deleting the node in the linked list
+void deleteNode(Node** head, int key) {
+    //create a reference
+    Node* temp = *head;
+    //previous node
+    Node* prev = NULL;
+    //if the key matches where the head is pointing
+    if(temp != NULL && temp->data == key) {
+        *head = temp->next;
+        delete temp;
+        return;
+    }
+    //if the head node does not have the key
+    else {
+        //search the key to be deleted
+        while(temp != NULL && temp->data != key) {
+            prev = temp;
+            temp = temp->next;
+        }
+        //if the search was unsuccessful and we don't find the key
+        if(temp == NULL) {
+            return;
+        }
+        prev->next = temp->next;
+        delete temp;
+    }
+}
+
 int main() {
 
     // head is a pointer which always points towards the starting point of the linkedlist
@@ -89,6 +117,8 @@ int main() {
     addNodeAtEnd(&head, 4);
     printList(head);
     addNodeAfter(head->next, 8);
+    printList(head);
+    deleteNode(&head, 8);
     printList(head);
     return 0;
 }
