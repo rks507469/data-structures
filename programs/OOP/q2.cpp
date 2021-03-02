@@ -19,7 +19,7 @@ class Daughter : public Mother {
 
 int main() {
     Daughter d;
-    d.display(); // prints the Daughter message
-    d.Mother::display(); // prints the Mothers message
+    d.display(); // prints the Daughter class message
+    d.Mother::display(); // prints the Mothers class message
     return 0;
 }
